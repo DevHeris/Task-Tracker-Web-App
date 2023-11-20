@@ -7,8 +7,6 @@ A simple web application for managing tasks. Add, mark as completed, and delete 
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -36,11 +34,4 @@ Task.
 3. Delete tasks using the Delete button.
 4. View task statistics below the task list.
 
-## Contributing
-
-Contributions are welcome! If you have suggestions, improvements, or bug fixes, please create an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
