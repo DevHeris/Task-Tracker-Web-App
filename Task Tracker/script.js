@@ -2,7 +2,8 @@ const taskForm = document.getElementById("task-form");
 const inputElement = document.getElementById("new-task");
 const addBtn = document.getElementById("submit");
 const taskList = document.getElementById("task-list");
-const taskCounter = document.getElementById("task-counter");
+const TotaltaskCount = document.getElementById("total-task-count");
+const completedTaskCount = document.getElementById("completed-task-count");
 
 const addTaskToDOM = (event) => {
   event.preventDefault();
@@ -11,6 +12,8 @@ const addTaskToDOM = (event) => {
   createTaskList(task);
 
   addTaskToStorage(task);
+
+  updateTaskCount();
 
   inputElement.value = "";
 };
@@ -42,6 +45,7 @@ const removeTaskFromStorage = (task) => {
   if (taskToRemoveIndex !== -1) {
     tasksFromStorage.splice(taskToRemoveIndex, 1);
     localStorage.setItem("tasks", JSON.stringify(tasksFromStorage));
+    return;
   }
 };
 
@@ -73,6 +77,17 @@ const createTaskList = (task) => {
   taskList.appendChild(li);
 };
 
+const updateTaskCount = () => {
+  const tasksFromStorage = getTasksFromStorage();
+  const totalTask = tasksFromStorage.length;
+
+  TotaltaskCount.innerHTML = totalTask;
+
+  const completedTasks = document.querySelectorAll(".completed");
+
+  completedTaskCount.innerHTML = completedTasks.length;
+};
+
 const editTask = (event) => {
   const task = event.target.closest("li");
   if (event.target.classList.contains("toggle-completed")) {
@@ -80,6 +95,7 @@ const editTask = (event) => {
     task.classList.contains("completed")
       ? (task.querySelector(".toggle-completed").textContent = "Undo")
       : (task.querySelector(".toggle-completed").textContent = "Complete");
+    updateTaskCount();
     return;
   }
 
@@ -87,6 +103,7 @@ const editTask = (event) => {
     if (confirm("Are you sure you want to delete this task?")) {
       task.remove();
       removeTaskFromStorage(task.firstElementChild.textContent);
+      updateTaskCount();
     }
   }
 };
@@ -94,3 +111,4 @@ const editTask = (event) => {
 taskForm.addEventListener("submit", addTaskToDOM);
 taskList.addEventListener("click", editTask);
 document.addEventListener("DOMContentLoaded", rendertasksToDOM);
+document.addEventListener("DOMContentLoaded", updateTaskCount);

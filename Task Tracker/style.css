@@ -86,9 +86,23 @@ li:hover {
     color: #fff;
 }
 
-#task-counter {
-    text-align: center;
-    margin-top: 20px;
+#task-counter-container {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+#total-task-counter,
+#completed-task-counter {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+#total-task-count,
+#completed-task-count {
     font-weight: bold;
-    color: #555;
+    margin-left: 5px;
+    color: #007bff;
 }
