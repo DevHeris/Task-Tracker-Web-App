@@ -22,9 +22,11 @@ A simple web application for managing tasks. Add, mark as completed, and delete 
 
 ### Installation
 
-1. Clone the repository: git clone https://github.com/DevHeris/Task-Tracker-Web-App.git
-2. Navigate to the project directory: cd task-tracker
-3. Open index.html in your preferred web browser.
+    Clone the repository: git clone https://github.com/DevHeris/Task-Tracker-Web-App.git
+    Navigate to the project directory: cd task-tracker
+    Install dependencies: npm install
+    Build the project with Webpack: npm run build
+    Open dist/index.html in your preferred web browser.
 
 ## Usage
 
