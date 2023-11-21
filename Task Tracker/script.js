@@ -35,7 +35,7 @@ const addTaskToStorage = (task) => {
   localStorage.setItem("tasks", JSON.stringify(tasksFromStorage));
 };
 
-const renderTasksFromStorage = () => {
+const rendertasksToDOM = () => {
   const tasksFromStorage = getTasksFromStorage();
   tasksFromStorage.forEach((task) => {
     createTaskList(task);
@@ -82,4 +82,4 @@ const editTask = (event) => {
 
 taskForm.addEventListener("submit", addTaskToDOM);
 taskList.addEventListener("click", editTask);
-document.addEventListener("DOMContentLoaded", renderTasksFromStorage);
+document.addEventListener("DOMContentLoaded", rendertasksToDOM);
