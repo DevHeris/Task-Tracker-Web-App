@@ -21,7 +21,7 @@ A simple web application for managing tasks. Add, mark as completed, and delete 
 
 ### Installation
 
-1. Clone the repository: git clone https://github.com/your-username/task-tracker.git
+1. Clone the repository: git clone https://github.com/DevHeris/Task-Tracker-Web-App.git
 2. Navigate to the project directory: cd task-tracker
 3. Open index.html in your preferred web browser.
 
