@@ -10,10 +10,11 @@ A simple web application for managing tasks. Add, mark as completed, and delete 
 
 ## Features
 
-- Add tasks to your list.
-- Mark tasks as completed.
-- Delete tasks from the list.
-- View task statistics (total tasks, completed tasks, remaining tasks).
+- **Add Tasks:** Easily add new tasks to your to-do list.
+- **Remove Tasks:** Delete tasks you've completed or no longer need.
+- **Complete Tasks:** Mark tasks as completed with a single click.
+- **Persistent Storage:** Your tasks are stored locally, so they persist even when you refresh the page.
+- **Task Counter:** Track the total number of tasks on your list.
 
 
 
