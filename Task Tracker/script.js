@@ -35,6 +35,16 @@ const addTaskToStorage = (task) => {
   localStorage.setItem("tasks", JSON.stringify(tasksFromStorage));
 };
 
+const removeTaskFromStorage = (task) => {
+  let tasksFromStorage = getTasksFromStorage();
+  const taskToRemoveIndex = tasksFromStorage.findIndex((tsk) => tsk === task);
+
+  if (taskToRemoveIndex !== -1) {
+    tasksFromStorage.splice(taskToRemoveIndex, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasksFromStorage));
+  }
+};
+
 const rendertasksToDOM = () => {
   const tasksFromStorage = getTasksFromStorage();
   tasksFromStorage.forEach((task) => {
@@ -76,6 +86,7 @@ const editTask = (event) => {
   if (event.target.classList.contains("delete-btn")) {
     if (confirm("Are you sure you want to delete this task?")) {
       task.remove();
+      removeTaskFromStorage(task.firstElementChild.textContent);
     }
   }
 };
