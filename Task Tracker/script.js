@@ -49,6 +49,45 @@ const removeTaskFromStorage = (task) => {
   }
 };
 
+const getCompletedTasksFromStorage = () => {
+  let completedTasksFromStorage;
+
+  completedTasksFromStorage = localStorage.getItem("completed tasks");
+
+  completedTasksFromStorage === null
+    ? (completedTasksFromStorage = [])
+    : (completedTasksFromStorage = JSON.parse(completedTasksFromStorage));
+
+  return completedTasksFromStorage;
+};
+
+const addCompletedTaskToStorage = (task) => {
+  let completedTasksFromStorage = getCompletedTasksFromStorage();
+
+  completedTasksFromStorage.push(task);
+
+  localStorage.setItem(
+    "completed tasks",
+    JSON.stringify(completedTasksFromStorage)
+  );
+};
+
+const removeCompletedTaskFromStorage = (task) => {
+  let completedTasksFromStorage = getCompletedTasksFromStorage();
+  const taskToRemoveIndex = completedTasksFromStorage.findIndex(
+    (tsk) => tsk === task
+  );
+
+  if (taskToRemoveIndex !== -1) {
+    completedTasksFromStorage.splice(taskToRemoveIndex, 1);
+    localStorage.setItem(
+      "completed tasks",
+      JSON.stringify(completedTasksFromStorage)
+    );
+    return;
+  }
+};
+
 const rendertasksToDOM = () => {
   const tasksFromStorage = getTasksFromStorage();
   tasksFromStorage.forEach((task) => {
@@ -74,6 +113,12 @@ const createTaskList = (task) => {
   li.appendChild(statusBtn);
   li.appendChild(deleteBtn);
 
+  const completedTasksFromStorage = getCompletedTasksFromStorage();
+  if (completedTasksFromStorage.includes(task)) {
+    li.classList.add("completed");
+    statusBtn.textContent = "Undo";
+  }
+
   taskList.appendChild(li);
 };
 
@@ -92,9 +137,14 @@ const editTask = (event) => {
   const task = event.target.closest("li");
   if (event.target.classList.contains("toggle-completed")) {
     task.classList.toggle("completed");
-    task.classList.contains("completed")
-      ? (task.querySelector(".toggle-completed").textContent = "Undo")
-      : (task.querySelector(".toggle-completed").textContent = "Complete");
+    if (task.classList.contains("completed")) {
+      task.querySelector(".toggle-completed").textContent = "Undo";
+      addCompletedTaskToStorage(task.firstElementChild.textContent);
+    } else {
+      task.querySelector(".toggle-completed").textContent = "Complete";
+      removeCompletedTaskFromStorage(task.firstElementChild.textContent);
+    }
+
     updateTaskCount();
     return;
   }
