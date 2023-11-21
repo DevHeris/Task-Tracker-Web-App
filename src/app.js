@@ -1,3 +1,5 @@
+import "./css/style.css";
+
 // Get references to HTML elements
 const taskForm = document.getElementById("task-form");
 const inputElement = document.getElementById("new-task");
